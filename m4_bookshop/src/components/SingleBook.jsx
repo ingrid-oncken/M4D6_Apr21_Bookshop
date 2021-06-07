@@ -14,16 +14,21 @@ class SingleBook extends React.Component {
 
   render() {
     return (
-      <Card onClick={() => this.setState({ selected: !this.state.selected })}
-      style={{border: this.state.selected ? '3px solid blue' : 'none'}}
+      <Card
+        onClick={() => this.setState({ selected: !this.state.selected })}
+        style={{ border: this.state.selected ? "3px solid blue" : "none" }}
+        style={{ width: "250px" }}
       >
         {/* the src of the image is coming from the object on the FantasyBooks.json
           file, same thing fot the title */}
         <Card.Img variant="top" src={this.props.book.img} />
         <Card.Body>
-          <Card.Title style={{ color: "gray" }}>
+          <Card.Title style={{ color: "black" }}>
             {this.props.book.title}
           </Card.Title>
+          <Card.Text style={{ color: "gray" }}>
+            {this.props.book.category} - {this.props.book.price} €
+          </Card.Text>
         </Card.Body>
       </Card>
     )

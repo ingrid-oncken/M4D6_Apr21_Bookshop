@@ -17,7 +17,7 @@ function App() {
         (so the book object containing all the book information ) 
         one nice trick is, whenever we have a prop inside a component (so an object too)
         we can use {book} instead of writing props.book.XXX */}
-        <SingleBook book={fantasyBooks[0]} />
+        <SingleBook book={fantasyBooks[27]} />
         {/* now I'll call BookList down here, passing the whole list/array of objects (the whole JSON file)*/}
         <BookList books={fantasyBooks} />
       </header>
