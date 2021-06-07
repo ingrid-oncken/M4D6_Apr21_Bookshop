@@ -1,6 +1,9 @@
 import { Card } from "react-bootstrap"
 //to change this function into a class is necessary to import react
 import React from "react"
+// import CommentCreator from "./CommentCreator"
+import CommentList from "./CommentList"
+import CommentListItem from "./CommentListItem"
 
 //This was a simple function but exercise 6 asked to change for a class
 
@@ -29,9 +32,34 @@ class SingleBook extends React.Component {
           <Card.Text style={{ color: "gray" }}>
             {this.props.book.category} - {this.props.book.price} €
           </Card.Text>
+          <CommentList
+            comments={this.state.comments}
+            bookId={this.props.bookInfo.asin}
+            onNewComment={this.onNewComment}
+          />
         </Card.Body>
       </Card>
     )
   }
+  onNewComment = (newComment) => {
+    this.setState({
+      comments: [...this.state.comments, newComment],
+    })
+  }
+
+  componentDidMount = async () => {
+    const resp = await fetch(
+      "https://striveschool.herokuapp.com/api/comments/" +
+        this.props.bookInfo.asin,
+      {
+        headers: { Authorization: "Basic YWRtaW46c3VwZXJzZWNyZXQ0" },
+      }
+    )
+    const retrievedComments = await resp.json()
+    this.setState({
+      comments: retrievedComments,
+    })
+  }
 }
+
 export default SingleBook

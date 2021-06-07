@@ -1,6 +1,7 @@
 import React from "react"
 import SingleBook from "./SingleBook"
 import { Col, Container, Form, Row } from "react-bootstrap"
+import BookDetails from "./BookDetails"
 
 //I need to display multiple books inside my booklist
 //the booklist is receiveing some props, in this case props is gonna be an array of books
@@ -11,6 +12,7 @@ class BookList extends React.Component {
     //inside the state I need to create a place for the query/string, that I'll call
     //searchQuery, and the initial value of it will be empty
     searchQuery: "",
+    selectedBook: undefined,
   }
 
   //here I'll make my returned value to be my JSX
@@ -37,6 +39,7 @@ class BookList extends React.Component {
             </Form>
           </Col>
         </Row>
+        <BookDetails book={this.state.selectedBook} />
         <Row>
           {/* inside the row I need to create multiples single books, and I'll need to create
   multiple single books */}
